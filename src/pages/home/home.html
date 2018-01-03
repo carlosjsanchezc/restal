@@ -1,17 +1,107 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="danger">
+    <ion-title>
+      Menu / Pedidos Online
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+    <ion-list>
+    
+    
+        <ion-item >
+        <ion-card *ngFor="let item of menus; let i=index" >
+            <img [src]="item.imagen" style="height=80; width=auto">
+            <ion-card-content text-wrap> 
+                <ion-card-title>
+                <h2>{{item.nombre| uppercase }}</h2>
+                </ion-card-title>
+                  {{ item.descripcion }}
+                              </ion-card-content>
+            <ion-row> 
+                <ion-item>
+                    <button ion-button full (click)="agrega(i)"><ion-icon name="pizza"></ion-icon>Agregar
+                    </button>    
+                </ion-item>
+                <ion-item>
+
+                         <ion-label color="dark">Cantidad</ion-label>  
+                           
+                        <ion-select multiple="false" [(ngModel)]="lacant[i]">
+                            <ion-option  value='{{cantidad}}' selected="false"  *ngFor="let cantidad of item.cantidad; let k=index">{{cantidad}}</ion-option>
+                        </ion-select>
+                </ion-item>
+                <ion-item>
+
+                         <ion-label color="dark">Adicionales</ion-label>
+                           
+                        <ion-select multiple="true" [(ngModel)]="cextras[i]">
+                            <ion-option  value='{{k+" "}}' selected="false"  *ngFor="let extra of item.extras; let k=index">{{extra}}</ion-option>
+                        </ion-select>
+                </ion-item>
+            </ion-row>
+        </ion-card>    
+    </ion-item>
+    </ion-list>
+    <ion-list>
+
+  <ion-item-sliding *ngFor="let compra of compras; let k=index">
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="comprasimagen[k]">
+      </ion-avatar>
+      <h2>{{compra}}</h2>
+      <p>{{comprasextras[k]}}</p>
+      <ion-note item-end>{{comprastotal[k]}}</ion-note>
+
+    </ion-item>
+
+    <ion-item-options side="right">
+      <button ion-button color="danger" (click)="elimina(k)">
+        <ion-icon name="trash"></ion-icon>
+        Eliminar
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+  <ion-item>
+    Total:
+    <ion-note item-end>    {{total_suma}}
+</ion-note>
+
+  </ion-item>
+
+</ion-list>
+    
+<ion-list *ngIf="total_suma>0">
+
+  <ion-item>
+    <ion-label stacked>Pedido a nombre de:</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Forma de pago</ion-label>
+    
+    <ion-select [(ngModel)]="fpago">
+      <ion-option value="dep">Deposito</ion-option>
+      <ion-option selected="true" value="efec">Efectivo</ion-option>
+      <ion-option value="tc">Tarjeta de Credito</ion-option>
+      <ion-option value="td">Tarjeta de Debito</ion-option>
+
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item *ngIf='fpago=="dep"'>
+    <ion-label stacked>Numero de Depósito</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+      <button ion-button block>
+        <ion-icon name="thumbs-up"></ion-icon>
+        Enviar Pedido
+      </button>
+    
+</ion-list>
 </ion-content>
