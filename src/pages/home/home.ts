@@ -31,6 +31,7 @@ export class HomePage {
   ) {}
 
     total_suma = 0;
+ 
 
  elimina(i)
  {
@@ -128,6 +129,7 @@ console.log(this.textoextras);
 
   ionViewDidLoad()
   {
+     console.log('Iniciando:');
 
         this.userService.getMenu().subscribe((data) => 
         {

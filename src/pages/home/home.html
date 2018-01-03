@@ -6,13 +6,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
     <ion-list>
     
     
         <ion-item >
         <ion-card *ngFor="let item of menus; let i=index" >
-            <img [src]="item.imagen" style="height=80; width=auto">
+           
+            <img [src]="item.imagen" style="width:200%; height:100%" >
+           
             <ion-card-content text-wrap> 
                 <ion-card-title>
                 <h2>{{item.nombre| uppercase }}</h2>
@@ -53,7 +55,7 @@
       </ion-avatar>
       <h2>{{compra}}</h2>
       <p>{{comprasextras[k]}}</p>
-      <ion-note item-end>{{comprastotal[k]}}</ion-note>
+      <ion-note item-end>{{comprastotal[k].toLocaleString('de-ge', {minimumFractionDigits: 2})}}</ion-note>
 
     </ion-item>
 
@@ -66,8 +68,10 @@
   </ion-item-sliding>
   <ion-item>
     Total:
-    <ion-note item-end>    {{total_suma}}
-</ion-note>
+    <ion-note item-end>   
+
+      {{(total_suma).toLocaleString('de-ge', {minimumFractionDigits: 2})}}
+    </ion-note>
 
   </ion-item>
 
