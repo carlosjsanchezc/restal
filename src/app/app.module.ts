@@ -11,7 +11,7 @@ import { UserService } from '../providers/user-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Push} from '@ionic-native/push';
 @NgModule({
   declarations: [
     MyApp,
@@ -38,6 +38,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     UserService,
     SplashScreen,
+    Push,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

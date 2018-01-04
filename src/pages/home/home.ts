@@ -27,7 +27,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public userService: UserService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    
   ) {}
 
     total_suma = 0;
@@ -108,7 +109,7 @@ console.log('extras:');
 console.log(this.textoextras);
   
           let alert = this.alertCtrl.create({ title: 'Compras',
-          subTitle: 'Se agrego '+this.menus[i].nombre+ 'x '+this.lacant[i],
+          subTitle: 'Se agrego '+this.menus[i].nombre+ ' X '+this.lacant[i],
           buttons: ['Ok'] });
           this.compras.push(this.menus[i].nombre+" X "+this.lacant[i]);
            console.log(this.compras);
@@ -129,6 +130,7 @@ console.log(this.textoextras);
 
   ionViewDidLoad()
   {
+    
      console.log('Iniciando:');
 
         this.userService.getMenu().subscribe((data) => 
@@ -143,4 +145,6 @@ console.log(this.textoextras);
         
   }
 
+
 }
+
