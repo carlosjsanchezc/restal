@@ -18,22 +18,18 @@
     </ion-fab-list>
   </ion-fab>
     <ion-list>
-    
-    
-        <ion-item >
+       <ion-item >
         <ion-card *ngFor="let item of menus; let i=index" >
-           
             <img [src]="item.imagen" style="width:200%; height:100%" >
-           
             <ion-card-content text-wrap> 
                 <ion-card-title>
                 <h2>{{item.nombre| uppercase }}</h2>
                 </ion-card-title>
                   {{ item.descripcion }}
-                              </ion-card-content>
+            </ion-card-content>
             <ion-row> 
                 <ion-item>
-                    <button ion-button color="danger" full (click)="agrega(i)"><ion-icon name="pizza"></ion-icon>Agregar
+                    <button ion-button color="danger" block medium (click)="agrega(i)"><ion-icon name="pizza"></ion-icon>Agregar
                     </button>    
                 </ion-item>
                 <ion-item>
@@ -65,7 +61,11 @@
       </ion-avatar>
       <h2>{{compra}}</h2>
       <p>{{comprasextras[k]}}</p>
-      <ion-note item-end>{{comprastotal[k].toLocaleString('de-ge', {minimumFractionDigits: 2})}}</ion-note>
+      <ion-note item-end>
+      <ion-badge color="danger">
+      {{comprastotal[k].toLocaleString('de-ge', {minimumFractionDigits: 2})}} BsF
+      </ion-badge>
+      </ion-note>
 
     </ion-item>
 
@@ -79,8 +79,9 @@
   <ion-item *ngIf="total_suma>0">
     Total:
     <ion-note item-end>   
-
-      {{(total_suma).toLocaleString('de-ge', {minimumFractionDigits: 2})}}
+    <ion-badge>
+      {{(total_suma).toLocaleString('de-ge', {minimumFractionDigits: 2})}} BsF
+    </ion-badge>
     </ion-note>
 
   </ion-item>
